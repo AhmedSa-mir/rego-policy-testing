@@ -75,3 +75,13 @@ mv opa /usr/local/bin/opa
 Then run the tests in the policies dir:
 
 `opa test policies/ -v`
+
+Output sample:
+```
+data.example.test_service_port_allowed_exclude_label: PASS (1.348983ms)
+data.example.test_service_port_allowed_exclude_ns: PASS (545.171µs)
+data.example.test_service_port_allowed: PASS (919.811µs)
+data.example.test_service_port_denied: PASS (1.257073ms)
+--------------------------------------------------------------------------------
+PASS: 4/4
+```
