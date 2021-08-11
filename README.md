@@ -21,7 +21,8 @@
     1. Parameters in which you can pass parameters to your rego code.
     2. Entity in which you put your entity json object.
 
-- The testcase function should be named as `test_xyz`
+- The testcase function should be named as `test_xyz`. This is OPA's test convention.
+- The Yaml-to-Json parser checks for files under `policies/<policy_dir>/tests/xyz.yml` and generates the json object in `policies/<policy_dir>/tests/xyz.rego`
 
 ## Example test file
 
@@ -63,4 +64,14 @@ test_service_port_denied {
 ```
 
 ## Running your tests
+
+Install opa binary first (this is the linux binary):
+```
+curl -L -o opa https://openpolicyagent.org/downloads/v0.31.0/opa_linux_amd64_static
+chmod 755 ./opa
+mv opa /usr/local/bin/opa
+```
+
+Then run the tests in the policies dir:
+
 `opa test policies/ -v`
