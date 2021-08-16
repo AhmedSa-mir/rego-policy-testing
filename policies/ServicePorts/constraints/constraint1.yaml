@@ -1,0 +1,14 @@
+sync: true
+
+name: Services are not using ports over 1024
+targets: { "kind": ["Service"], "cluster": [] }
+tags: [
+  "pci-dss",
+]
+enabled: true
+parameters: { 
+  "target_port": 1024,
+  "exclude_namespace": "",
+  "exclude_label_key": "",
+  "exclude_label_value": "" 
+}

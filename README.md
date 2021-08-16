@@ -5,8 +5,9 @@
 .
 ├── policies
     ├── policy1
-        ├── policy.rego     # Rego code for policy
-        ├── tests           # Test files
+        ├── constraints
+        ├── template
+        ├── tests
             ├── x_test.rego
             ├── y_test.rego
             ├── z_test.rego
@@ -20,45 +21,48 @@
 - Each test file contains a testcase with its input data. The input data contains:
     1. Parameters in which you can pass parameters to your rego code.
     2. Entity in which you put your entity json object.
-
+- You can put multiple testcases in one file
 - The testcase function should be named as `test_xyz`
+- You can skip testcases from being run by naming it `todo_xyz`
 
 ## Example test file
 
 ```
-package example
+package magalix.advisor.services.block_ports
 
-testcase1 = {
+test_service_port_violation {
+  testcase = {
     "parameters": {
         "target_port": 1024,
         "exclude_namespace": "test_ns",
         "exclude_label_key": "test_label",
         "exclude_label_value": "OK"
     },
-    "entity": {
+    "review": {
+      "object": {
         "apiVersion": "v1",
         "kind": "Service",
         "metadata": {
-        "name": "my-service"
+          "name": "my-service"
         },
         "spec": {
-        "type": "NodePort",
-        "selector": {
+          "type": "NodePort",
+          "selector": {
             "app": "MyApp"
-        },
-        "ports": [
+          },
+          "ports": [
             {
-            "port": 80,
-            "targetPort": 80,
-            "nodePort": 30007
+              "port": 80,
+              "targetPort": 80,
+              "nodePort": 30007
             }
-        ]
+          ]
         }
+      }
     }
-}
-
-test_service_port_denied {
-    deny with input as testcase1.entity with input.parameters as testcase1.parameters
+  }
+  
+  violation with input as testcase
 }
 ```
 
