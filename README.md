@@ -23,9 +23,8 @@
     2. Entity in which you put your entity json object.
 
 - You can put multiple testcases in one file
-- The testcase function should be named as `test_xyz`
-- You can skip testcases from being run by naming it `todo_xyz`
 - The testcase function should be named as `test_xyz`. This is OPA's test convention.
+- You can skip testcases from being run by naming it `todo_xyz`
 - The Yaml-to-Json parser checks for files under `policies/<policy_dir>/tests/xyz.yml` and generates the json object in `policies/<policy_dir>/tests/xyz.rego`
 
 ## Example test file
