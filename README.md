@@ -1,4 +1,4 @@
-# Rego Policy testing using `opa test`
+# Rego Policy Testing Using OPA Testing Framework
 
 ## Directory Structure
 ```
